@@ -15,8 +15,7 @@ public class Alien extends ObjetoDoMundoAdapter  {
     int random;
     @Override
     public void executar() throws Exception {
-        while(true){
-           
+        while(true){           
            while(!ehFim(ESQUERDA)){
            Thread.sleep(450);
            ProjeteisAlien projetil = new ProjeteisAlien();
