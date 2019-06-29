@@ -1,0 +1,375 @@
+<furbot>
+	<enunciado>
+	</enunciado>
+	
+	<mundo>
+		<qtdadeLin>15</qtdadeLin>
+		<qtdadeCol>15</qtdadeCol>
+		<explodir>true</explodir>
+		<tamanhoCel>P</tamanhoCel>
+	</mundo>
+	
+	<robo>
+		<x>0</x>
+		<y>0</y>
+	</robo>
+
+	<!--  Mina 1 -->
+
+	<objeto id="pilar" class="br.furb.furbot.Parede">
+		<random limiteInfX="1" limiteSupX="4" limiteInfY="3" limiteSupY="6"/>
+	</objeto>
+		
+	<objeto class="br.furb.furbot.Parede">
+		<x depende="pilar">0</x>
+		<y depende="pilar">-2</y>
+	</objeto>
+	
+	<objeto class="br.furb.furbot.Parede">
+		<x depende="pilar">2</x>
+		<y depende="pilar">-2</y>
+	</objeto>
+
+	<objeto class="br.furb.furbot.Parede">
+		<x depende="pilar">2</x>
+		<y depende="pilar">0</y>
+	</objeto>
+
+	<objeto class="br.furb.furbot.Parede">
+		<x depende="pilar">0</x>
+		<y depende="pilar">-1</y>
+	</objeto>
+
+	<objeto class="br.furb.furbot.Parede">
+		<x depende="pilar">2</x>
+		<y depende="pilar">-1</y>
+	</objeto>
+	
+	<numero class="br.furb.furbot.Tesouro">
+		<x depende="pilar">1</x>
+		<y depende="pilar">-1</y>
+		<valor randomInf="10"/>
+	</numero>
+	
+	<!-- abertura em cima -->
+	<grupo>
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar">1</x>
+			<y depende="pilar">0</y>
+		</objeto>
+	
+		<!--  Mina 2 -->
+	
+		<objeto id="pilar2" class="br.furb.furbot.Parede">
+			<random limiteInfX="9" limiteSupX="11" limiteInfY="3" limiteSupY="6"/>
+		</objeto>
+			
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar2">0</x>
+			<y depende="pilar2">-2</y>
+		</objeto>
+		
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar2">2</x>
+			<y depende="pilar2">-2</y>
+		</objeto>
+	
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar2">2</x>
+			<y depende="pilar2">0</y>
+		</objeto>
+	
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar2">0</x>
+			<y depende="pilar2">-1</y>
+		</objeto>
+	
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar2">2</x>
+			<y depende="pilar2">-1</y>
+		</objeto>
+		
+		<numero class="br.furb.furbot.Tesouro">
+			<x depende="pilar2">1</x>
+			<y depende="pilar2">-1</y>
+			<valor randomInf="10"/>
+		</numero>
+		
+		<grupo>
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar2">1</x>
+				<y depende="pilar2">0</y>
+			</objeto>
+			
+			<!--  Mina 3 -->
+		
+			<objeto id="pilar4" class="br.furb.furbot.Parede">
+				<random limiteInfX="1" limiteSupX="11" limiteInfY="11" limiteSupY="13"/>
+			</objeto>
+				
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar4">0</x>
+				<y depende="pilar4">-2</y>
+			</objeto>
+			
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar4">2</x>
+				<y depende="pilar4">-2</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar4">2</x>
+				<y depende="pilar4">0</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar4">0</x>
+				<y depende="pilar4">-1</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar4">2</x>
+				<y depende="pilar4">-1</y>
+			</objeto>
+			
+			<numero class="br.furb.furbot.Tesouro">
+				<x depende="pilar4">1</x>
+				<y depende="pilar4">-1</y>
+				<valor randomInf="10"/>
+			</numero>
+			
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar4">1</x>
+					<y depende="pilar4">0</y>
+				</objeto>
+			</grupo>		
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar4">1</x>
+					<y depende="pilar4">-2</y>
+				</objeto>
+			
+			</grupo>			
+				
+		</grupo>		
+		<grupo>
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar2">1</x>
+				<y depende="pilar2">-2</y>
+			</objeto>
+		
+			<!--  Mina 3 -->
+		
+			<objeto id="pilar5" class="br.furb.furbot.Parede">
+				<random limiteInfX="1" limiteSupX="11" limiteInfY="11" limiteSupY="13"/>
+			</objeto>
+				
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar5">0</x>
+				<y depende="pilar5">-2</y>
+			</objeto>
+			
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar5">2</x>
+				<y depende="pilar5">-2</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar5">2</x>
+				<y depende="pilar5">0</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar5">0</x>
+				<y depende="pilar5">-1</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar5">2</x>
+				<y depende="pilar5">-1</y>
+			</objeto>
+			
+			<numero class="br.furb.furbot.Tesouro">
+				<x depende="pilar5">1</x>
+				<y depende="pilar5">-1</y>
+				<valor randomInf="10"/>
+			</numero>
+		
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar5">1</x>
+					<y depende="pilar5">0</y>
+				</objeto>
+			</grupo>		
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar5">1</x>
+					<y depende="pilar5">-2</y>
+				</objeto>
+			
+			</grupo>			
+		</grupo>
+	</grupo>
+
+	<!-- abertura embaixo -->
+	<grupo>
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar">1</x>
+			<y depende="pilar">-2</y>
+		</objeto>
+	
+		<!--  Mina 2 -->
+	
+		<objeto id="pilar3" class="br.furb.furbot.Parede">
+			<random limiteInfX="9" limiteSupX="11" limiteInfY="3" limiteSupY="6"/>
+		</objeto>
+			
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar3">0</x>
+			<y depende="pilar3">-2</y>
+		</objeto>
+		
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar3">2</x>
+			<y depende="pilar3">-2</y>
+		</objeto>
+	
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar3">2</x>
+			<y depende="pilar3">0</y>
+		</objeto>
+	
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar3">0</x>
+			<y depende="pilar3">-1</y>
+		</objeto>
+	
+		<objeto class="br.furb.furbot.Parede">
+			<x depende="pilar3">2</x>
+			<y depende="pilar3">-1</y>
+		</objeto>
+		
+		<numero class="br.furb.furbot.Tesouro">
+			<x depende="pilar3">1</x>
+			<y depende="pilar3">-1</y>
+			<valor randomInf="10"/>
+		</numero>
+		
+		<grupo>
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar3">1</x>
+				<y depende="pilar3">0</y>
+			</objeto>
+			<!--  Mina 3 -->
+		
+			<objeto id="pilar6" class="br.furb.furbot.Parede">
+				<random limiteInfX="1" limiteSupX="11" limiteInfY="11" limiteSupY="13"/>
+			</objeto>
+				
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar6">0</x>
+				<y depende="pilar6">-2</y>
+			</objeto>
+			
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar6">2</x>
+				<y depende="pilar6">-2</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar6">2</x>
+				<y depende="pilar6">0</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar6">0</x>
+				<y depende="pilar6">-1</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar6">2</x>
+				<y depende="pilar6">-1</y>
+			</objeto>
+			
+			<numero class="br.furb.furbot.Tesouro">
+				<x depende="pilar6">1</x>
+				<y depende="pilar6">-1</y>
+				<valor randomInf="10"/>
+			</numero>
+			
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar6">1</x>
+					<y depende="pilar6">0</y>
+				</objeto>
+			</grupo>		
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar6">1</x>
+					<y depende="pilar6">-2</y>
+				</objeto>
+			
+			</grupo>			
+		</grupo>		
+		<grupo>
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar3">1</x>
+				<y depende="pilar3">-2</y>
+			</objeto>
+		
+			<!--  Mina 3 -->
+		
+			<objeto id="pilar7" class="br.furb.furbot.Parede">
+				<random limiteInfX="1" limiteSupX="11" limiteInfY="11" limiteSupY="13"/>
+			</objeto>
+				
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar7">0</x>
+				<y depende="pilar7">-2</y>
+			</objeto>
+			
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar7">2</x>
+				<y depende="pilar7">-2</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar7">2</x>
+				<y depende="pilar7">0</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar7">0</x>
+				<y depende="pilar7">-1</y>
+			</objeto>
+		
+			<objeto class="br.furb.furbot.Parede">
+				<x depende="pilar7">2</x>
+				<y depende="pilar7">-1</y>
+			</objeto>
+			
+			<numero class="br.furb.furbot.Tesouro">
+				<x depende="pilar7">1</x>
+				<y depende="pilar7">-1</y>
+				<valor randomInf="10"/>
+			</numero>
+			
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar7">1</x>
+					<y depende="pilar7">0</y>
+				</objeto>
+			</grupo>		
+			<grupo>
+				<objeto class="br.furb.furbot.Parede">
+					<x depende="pilar7">1</x>
+					<y depende="pilar7">-2</y>
+				</objeto>
+			
+			</grupo>			
+		</grupo>
+	</grupo>
+
+
+</furbot>

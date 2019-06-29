@@ -1,0 +1,18 @@
+<furbot>
+
+	<enunciado>
+
+	</enunciado>
+	<mundo>
+		<qtdadeLin>10</qtdadeLin>
+		<qtdadeCol>10</qtdadeCol>
+		<explodir>true</explodir>
+	</mundo>
+
+	<robo>
+		<x>5</x>
+		<y>8</y>
+	</robo>
+        
+
+</furbot>

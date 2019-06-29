@@ -1,0 +1,9 @@
+-Atirar (Espaço)
+-Pausa (P)
+-Movimento (Setas) ---OK---
+-Vida (3 vidas, ao ser atingido reinicia a fase)
+-Asteroides (Movimento, levar tiro some, some ao atingir ultima linha)
+
+-Fases (aumenta a velocidade dos asteróides/naves aliens)
+
+-Gráficos e soms
