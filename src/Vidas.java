@@ -1,4 +1,3 @@
-
 import br.furb.furbot.ObjetoDoMundoAdapter;
 import br.furb.furbot.suporte.LoadImage;
 import javax.swing.ImageIcon;

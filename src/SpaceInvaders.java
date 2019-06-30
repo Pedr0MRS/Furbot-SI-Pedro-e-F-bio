@@ -1,13 +1,12 @@
-//teste
-
 import br.furb.furbot.Furbot;
 import br.furb.furbot.MundoVisual;
 import br.furb.furbot.suporte.LoadImage;
 import javax.swing.ImageIcon;
 
 public class SpaceInvaders extends Furbot {
-
-    boolean loop = true, pause = true, vivo = true, emPausa = false;
+    
+    //<editor-fold defaultstate="collapsed" desc="Declarando Variáveis">
+    boolean loop = true, pause = true, vivo = true;
     int linhaAsteroide = 1;
     int colunaAsteroide = 9;
     int colunaVida = 9;
@@ -18,15 +17,14 @@ public class SpaceInvaders extends Furbot {
     int nAliensCriados = 0;
     int qtdVidas = 3;
     int asteroidesMortos = 0;
+    int level = 0;
     Vidas[] arrayVidas = new Vidas[qtdVidas];
     String nomeObj;
     String[] Id;
     Morte teste = new Morte();
-
-    @Override
-    public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("nave.png");
-    }
+    //</editor-fold>
+    
+    
     
     public void QuantidadeVidas() {
         if (getObjeto(AQUIMESMO) != null) {
@@ -40,6 +38,14 @@ public class SpaceInvaders extends Furbot {
         }
     }
     
+    public int RetornaLevel(){
+        return level;
+    }
+    
+    public void ResetarVariaveis(){
+        
+    }
+    
     public void RegistrarMorteAsteroide() {
         asteroidesMortos++;
     }
@@ -47,8 +53,10 @@ public class SpaceInvaders extends Furbot {
     @Override
     public void inteligencia() throws Exception {
         limparConsole();
+        
         while (loop) {
             vivo = true;
+            
             //<editor-fold defaultstate="collapsed" desc="Criando Objetos">
             Alien alien = new Alien();
             Asteroides[] arrayAsteroides = new Asteroides[20];
@@ -108,6 +116,11 @@ public class SpaceInvaders extends Furbot {
                             andarEsquerda();
                         }
                         break;
+                    case 80:
+                    	pause = true;
+                    	diga("Jogo pausado");
+                    	loopPausa();
+                    	break;
                     case 32:
                         Projeteis laser = new Projeteis();
                         int x = getX();
@@ -132,8 +145,22 @@ public class SpaceInvaders extends Furbot {
 
     }
 
+    private void loopPausa() {
+		while (pause) {
+			int teclaPause = getUltimaTeclaPress();
+			if (teclaPause == 80) {
+				pause = false;
+			}
+		}
+	}
+
     public static void main(String[] args) {
         MundoVisual.iniciar("SpaceInvaders.xml");
+    }
+    
+    @Override
+    public ImageIcon buildImage() {
+        return LoadImage.getInstance().getIcon("nave.png");
     }
 
 }
