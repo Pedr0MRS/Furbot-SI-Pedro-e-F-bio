@@ -3,13 +3,13 @@ import javax.swing.ImageIcon;
 import br.furb.furbot.ObjetoDoMundoAdapter;
 import br.furb.furbot.suporte.LoadImage;
 import br.furb.furbot.*;
-import static br.furb.furbot.ObjetoDoMundoAdapter.AQUIMESMO;
 
 public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 
-    Asteroides a = new Asteroides();
-    SpaceInvaders Obj = new SpaceInvaders();
+    Asteroides ObjAsteroides = new Asteroides();
+    SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
     String nomeObj;
+    String[] Id;
     int Y = 0;
 
     @Override
@@ -25,12 +25,15 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 
             if (getObjeto(AQUIMESMO) != null) {
                 nomeObj = getObjeto(AQUIMESMO).toString();
-                String[] Id = nomeObj.split("@");
-
+                Id = nomeObj.split("@");
+                
+                if("Asteroides".equals(Id[0])){
+                    ObjSpaceInvaders.RegistrarMorteAsteroide();
+                }
                 if ("SpaceInvaders".equals(Id[0])) {     
                     break;
-                } else {
-
+                } 
+                else{
                     Thread.sleep(5);
                     removerObjetoDoMundo(getObjeto(AQUIMESMO));
                     removerMe();
@@ -42,10 +45,5 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
         if (Y == 7) {
             removerMe();
         }
-    }
-
-    public boolean Morreu() {
-        return true;
-
     }
 }
