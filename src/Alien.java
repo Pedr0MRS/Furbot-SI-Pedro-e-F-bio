@@ -7,12 +7,33 @@ import javax.swing.ImageIcon;
 public class Alien extends ObjetoDoMundoAdapter  {
 
     ProjeteisAlien projetil = new ProjeteisAlien();
-    int random;
-    @Override
+	SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
+	int level = ObjSpaceInvaders.RetornaLevel();
+	int velocidadeAsteroide;
+    	int random;
+	
+	public int VelocidadePorLvl(){		
+			switch(level){
+				case 1:
+					return 550;
+					break;
+				case 2:
+					return 450;
+					break;
+				case 3:
+					return 400;
+					break;
+				default:
+					return 550;
+					break;				
+			}	
+		}
+	
+	@Override
     public void executar() throws Exception {
         while(true){           
            while(!ehFim(ESQUERDA)){
-           Thread.sleep(450);
+           Thread.sleep(VelocidadePorLvl());
            int randomTime = (int) (Math.random() * 2 + 1);
 			if (randomTime == 1) {
 				ProjeteisAlien projetil = new ProjeteisAlien();
@@ -21,7 +42,8 @@ public class Alien extends ObjetoDoMundoAdapter  {
            andarEsquerda();
            }
            while(!ehFim(DIREITA)){
-           Thread.sleep(450);int randomTime = (int) (Math.random() * 2 + 1);
+           Thread.sleep(VelocidadePorLvl());
+		int randomTime = (int) (Math.random() * 2 + 1);
 			if (randomTime == 1) {
 				ProjeteisAlien projetil = new ProjeteisAlien();
 				adicionarObjetoNoMundoXY(projetil, getX(), getY());
