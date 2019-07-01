@@ -56,12 +56,12 @@ public class SpaceInvaders extends Furbot {
         nVidasCriadas = 0;
         nAliensCriados = 0;
         qtdVidas = 3;
-        asteroidesMortos = 0;
+        asteroidesMortos = 20;
     }
 
     public void RegistrarMorteAsteroide() {
         diga("Estou no Método");
-        asteroidesMortos++;
+        asteroidesMortos--;
     }
 
     @Override
@@ -114,9 +114,9 @@ public class SpaceInvaders extends Furbot {
 
                 //<editor-fold defaultstate="collapsed" desc="Loop de Vida do Furbot">
                 while (vivo) {
-                    if ((arrayAsteroides.length - asteroidesMortos) == 0) {
+                    if (asteroidesMortos == 0) {                       
                         diga("Fase Completa");
-                        break;
+                        LoopDeFase = false;
                     }
                     int tecla = getUltimaTeclaPress();
                     switch (tecla) {
