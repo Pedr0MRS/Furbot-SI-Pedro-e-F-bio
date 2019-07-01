@@ -63,6 +63,15 @@ public class SpaceInvaders extends Furbot {
         diga("Estou no Método");
         asteroidesMortos--;
     }
+    
+    private void loopPausa() {
+        while (pause) {
+            int teclaPause = getUltimaTeclaPress();
+            if (teclaPause == 80) {
+                pause = false;
+            }
+        }
+    }
 
     @Override
     public void inteligencia() throws Exception {
@@ -114,7 +123,7 @@ public class SpaceInvaders extends Furbot {
 
                 //<editor-fold defaultstate="collapsed" desc="Loop de Vida do Furbot">
                 while (vivo) {
-                    if (asteroidesMortos == 0) {                       
+                    if (asteroidesMortos == 0) {
                         diga("Fase Completa");
                         LoopDeFase = false;
                     }
@@ -163,15 +172,6 @@ public class SpaceInvaders extends Furbot {
             diga("GAMEOVER");
         }
 
-    }
-
-    private void loopPausa() {
-        while (pause) {
-            int teclaPause = getUltimaTeclaPress();
-            if (teclaPause == 80) {
-                pause = false;
-            }
-        }
     }
 
     public static void main(String[] args) {

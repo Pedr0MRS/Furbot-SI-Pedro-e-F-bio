@@ -4,11 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Vidas extends ObjetoDoMundoAdapter {
 
-    boolean vivo = true;
-
     @Override
-
-    
     public void executar() throws Exception {
       
 

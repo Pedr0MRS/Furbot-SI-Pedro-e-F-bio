@@ -9,11 +9,6 @@ public class Projeteis extends ObjetoDoMundoAdapter {
     SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
     String nomeObj;
     String[] Id;
-    
-    @Override
-    public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("laser.png");
-    }
 
     @Override
     public void executar() throws Exception {
@@ -35,5 +30,10 @@ public class Projeteis extends ObjetoDoMundoAdapter {
         if (ehFim(ACIMA)) {
             removerMe();
         }
+    }
+    
+     @Override
+    public ImageIcon buildImage() {
+        return LoadImage.getInstance().getIcon("laser.png");
     }
 }
