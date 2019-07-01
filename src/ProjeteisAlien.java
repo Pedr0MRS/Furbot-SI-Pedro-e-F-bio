@@ -28,6 +28,7 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
                 
                 if("Asteroides".equals(Id[0])){
                     ObjSpaceInvaders.RegistrarMorteAsteroide();
+                    diga("Entrei Tiro Alien");
                 }
                 if ("SpaceInvaders".equals(Id[0])) {     
                     break;

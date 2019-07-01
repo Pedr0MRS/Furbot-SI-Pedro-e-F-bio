@@ -31,6 +31,7 @@ public class Asteroides extends ObjetoDoMundoAdapter {
 
 			if (getY() == 9) {
 				removerMe();
+                                break;
 			}
 		}
 	}
