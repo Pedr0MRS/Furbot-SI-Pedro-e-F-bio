@@ -7,15 +7,28 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 
     Asteroides ObjAsteroides = new Asteroides();
     SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
+    int level = ObjSpaceInvaders.RetornarLevel();
     String nomeObj;
     String[] Id;
     int Y = 0;
 
-    @Override
-    public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("laser.png");
-    }
-
+    public int VelocidadePorLvl(){		
+			switch(level){
+				case 1:
+					return 65;
+					break;
+				case 2:
+					return 55;
+					break;
+				case 3:
+					return 45;
+					break;
+				default:
+					return 65;
+					break;				
+			}	
+		}
+    
     @Override
     public void executar() throws Exception {
         while (Y != 7) {
@@ -40,10 +53,15 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
                     break;
                 }
             }
-            Thread.sleep(50);
+            Thread.sleep(VelocidadePorLvl());
         }
         if (Y == 7) {
             removerMe();
         }
+    }
+    
+     @Override
+    public ImageIcon buildImage() {
+        return LoadImage.getInstance().getIcon("laser.png");
     }
 }
