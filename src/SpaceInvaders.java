@@ -6,10 +6,10 @@ import javax.swing.ImageIcon;
 
 public class SpaceInvaders extends Furbot {
 
-    //<editor-fold defaultstate="collapsed" desc="Declarando Variáveis">
+    //<editor-fold defaultstate="collapsed" desc="Declarando Variaveis">
     boolean LoopDeFase = true;
     boolean LoopPrincipal = true;
-    boolean pause = true;
+    boolean pause = false;
     boolean vivo = true;
     int linhaAsteroide = 1;
     int colunaAsteroide = 9;
@@ -39,13 +39,9 @@ public class SpaceInvaders extends Furbot {
         }
     }
 
-    public int RetornaLevel() {
-        return level;
-    }
-
     public void ResetarVariaveis() {
         LoopDeFase = true;
-        pause = true;
+        pause = false;
         vivo = true;
         linhaAsteroide = 1;
         colunaAsteroide = 9;
@@ -59,17 +55,25 @@ public class SpaceInvaders extends Furbot {
         asteroidesMortos = 20;
     }
 
+    public int RetornaLevel() {
+        return level;
+    }
+    
+    public boolean RetornaPause() {
+    	return pause;
+    }
+
     public void RegistrarMorteAsteroide() {
-        diga("Estou no Método");
         asteroidesMortos--;
     }
     
     private void loopPausa() {
         while (pause) {
             int teclaPause = getUltimaTeclaPress();
-            if (teclaPause == 80) {
+            if (teclaPause == 80) {            	
                 pause = false;
             }
+            RetornaPause();
         }
     }
 
@@ -124,7 +128,7 @@ public class SpaceInvaders extends Furbot {
                 //<editor-fold defaultstate="collapsed" desc="Loop de Vida do Furbot">
                 while (vivo) {
                     if (asteroidesMortos == 0) {
-                        diga("Fase Completa");
+                    	//diga("Fase Completa");
                         LoopDeFase = false;
                     }
                     int tecla = getUltimaTeclaPress();
@@ -142,6 +146,7 @@ public class SpaceInvaders extends Furbot {
                         case 80:
                             pause = true;
                             diga("Jogo pausado");
+                            RetornaPause();
                             loopPausa();
                             break;
                         case 32:
@@ -153,7 +158,7 @@ public class SpaceInvaders extends Furbot {
                     }
                     QuantidadeVidas();
                     if (qtdVidas == 0) {
-                        LoopDeFase = false;
+                    	//LoopDeFase = false;
                     }
                 }
                 //</editor-fold>           
