@@ -34,26 +34,20 @@ public class Asteroides extends ObjetoDoMundoAdapter {
     public void executar() throws Exception {
         while (vivo) {
         	for (int i = 0; i <= 4; i++) {
-        		pause = ObjSpaceInvaders.RetornaPause();
-        		if (pause) {
-        			diga("Asteroides parados");
+        		if (SpaceInvaders.pause) {
         			pausarAsteroides();
         		}
                 Thread.sleep(VelocidadePorLvl());
                 andarEsquerda();
             }
             for (int i = 0; i <= 4; i++) {
-            	pause = ObjSpaceInvaders.RetornaPause();
-            	if (pause) {
-            		diga("Asteroides parados");
+            	if (SpaceInvaders.pause) {
         			pausarAsteroides();
         		}
                 Thread.sleep(500);
                 andarDireita();
             }
-            pause = ObjSpaceInvaders.RetornaPause();
-            if (pause) {
-            	diga("Asteroides parados");
+            if (SpaceInvaders.pause) {
     			pausarAsteroides();
     		}
             Thread.sleep(500);
@@ -66,9 +60,9 @@ public class Asteroides extends ObjetoDoMundoAdapter {
         }
     }
 
-    private void pausarAsteroides() {
-    	while(pause) {
-    		pause = ObjSpaceInvaders.RetornaPause();
+    private void pausarAsteroides() throws InterruptedException {
+    	while(SpaceInvaders.pause) {
+    		Thread.sleep(2000);
     	}
 	}
 

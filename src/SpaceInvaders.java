@@ -9,7 +9,7 @@ public class SpaceInvaders extends Furbot {
     //<editor-fold defaultstate="collapsed" desc="Declarando Variaveis">
     boolean LoopDeFase = true;
     boolean LoopPrincipal = true;
-    boolean pause = false;
+    public static boolean pause = false;
     boolean vivo = true;
     int linhaAsteroide = 1;
     int colunaAsteroide = 9;
@@ -58,10 +58,6 @@ public class SpaceInvaders extends Furbot {
     public int RetornaLevel() {
         return level;
     }
-    
-    public boolean RetornaPause() {
-    	return pause;
-    }
 
     public void RegistrarMorteAsteroide() {
         asteroidesMortos--;
@@ -73,7 +69,6 @@ public class SpaceInvaders extends Furbot {
             if (teclaPause == 80) {            	
                 pause = false;
             }
-            RetornaPause();
         }
     }
 
@@ -127,10 +122,6 @@ public class SpaceInvaders extends Furbot {
 
                 //<editor-fold defaultstate="collapsed" desc="Loop de Vida do Furbot">
                 while (vivo) {
-                    if (asteroidesMortos == 0) {
-                    	//diga("Fase Completa");
-                        LoopDeFase = false;
-                    }
                     int tecla = getUltimaTeclaPress();
                     switch (tecla) {
                         case TECLADIREITA:
@@ -146,8 +137,8 @@ public class SpaceInvaders extends Furbot {
                         case 80:
                             pause = true;
                             diga("Jogo pausado");
-                            RetornaPause();
                             loopPausa();
+                            limparConsole();
                             break;
                         case 32:
                             Projeteis laser = new Projeteis();

@@ -1,9 +1,14 @@
--Atirar (Espaço)
--Pausa (P)
+-Atirar (Espaço)  ---OK---
+-Pausa (P) ---OK--- //PAUSAR TIRO
 -Movimento (Setas) ---OK---
--Vida (3 vidas, ao ser atingido reinicia a fase)
--Asteroides (Movimento, levar tiro some, some ao atingir ultima linha)
+-Vida (3 vidas, ao ser atingido reinicia a fase) ---OK PC PEDRO, FALTA VISUAL---
+-Asteroides (Movimento, levar tiro some, some ao atingir ultima linha) ---OK--- //VERIFICAR MOVIMENTOS ESTRANHOS Q SPAWNAM ASTEROIDES
+-EXCEPTION ASTEROIDE MORTO
 
--Fases (aumenta a velocidade dos asteróides/naves aliens)
+-FALAR COM O PROFI SOBRE A MOVI DO ASTEROIDE Quando o último asteroideatingir a borda esquerda da tela, eles devem fazer o percurso da esquerda para a direita, descendo uma linha. E assim repetir o processo. E Os asteroides não podem nascer na última linha o que produz uma área de escape para o atirador
 
--Gráficos e soms
+
+-Fases (aumenta a velocidade dos asteróides/naves aliens) ---OK VELOCIDADE, FALTA PASSAR FASE(VERIFICAR MORTE DOS CRACKUDOS)---
+
+-Gráficos ---OK---
+-Soms

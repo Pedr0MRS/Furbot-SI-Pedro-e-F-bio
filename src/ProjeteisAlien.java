@@ -37,23 +37,6 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
         while (Y != 7) {
             Y = getY();
             andarAbaixo();
-
-            if (getObjeto(AQUIMESMO) != null) {
-                nomeObj = getObjeto(AQUIMESMO).toString();
-                Id = nomeObj.split("@");
-
-                if ("Asteroides".equals(Id[0])) {
-                    ObjSpaceInvaders.RegistrarMorteAsteroide();
-                }
-                if ("SpaceInvaders".equals(Id[0])) {
-                    break;
-                } else {
-                    Thread.sleep(5);
-                    removerObjetoDoMundo(getObjeto(AQUIMESMO));
-                    removerMe();
-                    break;
-                }
-            }
             Thread.sleep(VelocidadePorLvl());
         }
         if (Y == 7) {
