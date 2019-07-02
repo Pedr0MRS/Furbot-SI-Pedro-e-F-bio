@@ -6,7 +6,6 @@ import br.furb.furbot.suporte.LoadImage;
 public class Asteroides extends ObjetoDoMundoAdapter {
 
     boolean vivo = true;
-    boolean pause = false;
     SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
     int level = ObjSpaceInvaders.RetornaLevel();
     int velocidadeAsteroide;
@@ -33,29 +32,14 @@ public class Asteroides extends ObjetoDoMundoAdapter {
     @Override
     public void executar() throws Exception {
         while (vivo) {
-        	for (int i = 0; i <= 4; i++) {
-        		pause = ObjSpaceInvaders.RetornaPause();
-        		if (pause) {
-        			diga("Asteroides parados");
-        			pausarAsteroides();
-        		}
+            for (int i = 0; i <= 4; i++) {
                 Thread.sleep(VelocidadePorLvl());
                 andarEsquerda();
             }
             for (int i = 0; i <= 4; i++) {
-            	pause = ObjSpaceInvaders.RetornaPause();
-            	if (pause) {
-            		diga("Asteroides parados");
-        			pausarAsteroides();
-        		}
                 Thread.sleep(500);
                 andarDireita();
             }
-            pause = ObjSpaceInvaders.RetornaPause();
-            if (pause) {
-            	diga("Asteroides parados");
-    			pausarAsteroides();
-    		}
             Thread.sleep(500);
             andarAbaixo();
 
@@ -66,13 +50,7 @@ public class Asteroides extends ObjetoDoMundoAdapter {
         }
     }
 
-    private void pausarAsteroides() {
-    	while(pause) {
-    		pause = ObjSpaceInvaders.RetornaPause();
-    	}
-	}
-
-	@Override
+    @Override
     public ImageIcon buildImage() {
         return LoadImage.getInstance().getIcon("asteroidIcon.png");
     }

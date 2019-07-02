@@ -19,6 +19,7 @@ public class Projeteis extends ObjetoDoMundoAdapter {
                 Id = nomeObj.split("@");
                 if ("Asteroides".equals(Id[0])) {
                     ObjSpaceInvaders.RegistrarMorteAsteroide();
+                    diga("Entrei Tiro Furbot");
                 }
                 removerObjetoDoMundo(getObjeto(AQUIMESMO));
                 removerMe();
