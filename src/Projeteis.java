@@ -14,11 +14,10 @@ public class Projeteis extends ObjetoDoMundoAdapter {
 	@Override
 	public void executar() throws Exception {
 		while (!ehFim(ACIMA)) {
-			andarAcima();
 			if (SpaceInvaders.pause) {
 				pausarTiros();
 			}
-			andarEsquerda();
+			andarAcima();
 			if (getObjeto(AQUIMESMO) != null) {
 				nomeObj = getObjeto(AQUIMESMO).toString();
 				Id = nomeObj.split("@");
