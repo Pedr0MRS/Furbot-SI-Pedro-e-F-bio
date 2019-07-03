@@ -44,6 +44,6 @@ public class Projeteis extends ObjetoDoMundoAdapter {
     
     @Override
     public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("laser.png");
+        return LoadImage.getInstance().getIcon("laserFurbot.png");
     }
 }
