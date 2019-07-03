@@ -35,14 +35,28 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
     @Override
     public void executar() throws Exception {
         while (Y != 7) {
+            if (SpaceInvaders.pause) {
+                pausarAsteroides();
+            }
             Y = getY();
             andarAbaixo();
             Thread.sleep(VelocidadePorLvl());
         }
         if (Y == 7) {
+            //inicio add
+            if ("SpaceInvaders".equals(Id[0])) {
+                break; //verificar para enviar diminuição de vida
+            }
+            //fim add
             removerMe();
         }
     }
+    
+    private void pausarAsteroides() throws InterruptedException {
+    	while(SpaceInvaders.pause) {
+    		Thread.sleep(2000);
+    	}
+	}
 
     @Override
     public ImageIcon buildImage() {
