@@ -15,6 +15,10 @@ public class Projeteis extends ObjetoDoMundoAdapter {
     public void executar() throws Exception {
         while (!ehFim(ACIMA)) {
             andarAcima();
+            if (SpaceInvaders.pause) {
+                pausarAsteroides();
+            }
+            andarEsquerda();
             if (getObjeto(AQUIMESMO) != null) {
                 nomeObj = getObjeto(AQUIMESMO).toString();
                 Id = nomeObj.split("@");
@@ -32,7 +36,13 @@ public class Projeteis extends ObjetoDoMundoAdapter {
         }
     }
     
-     @Override
+    private void pausarAsteroides() throws InterruptedException {
+    	while(SpaceInvaders.pause) {
+    		Thread.sleep(2000);
+    	}
+	}
+    
+    @Override
     public ImageIcon buildImage() {
         return LoadImage.getInstance().getIcon("laser.png");
     }
