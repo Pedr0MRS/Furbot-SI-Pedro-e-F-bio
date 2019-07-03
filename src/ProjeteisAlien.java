@@ -1,4 +1,3 @@
-
 import javax.swing.ImageIcon;
 import br.furb.furbot.ObjetoDoMundoAdapter;
 import br.furb.furbot.suporte.LoadImage;
@@ -60,6 +59,6 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 
     @Override
     public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("laser.png");
+        return LoadImage.getInstance().getIcon("laserAlien.png");
     }
 }
