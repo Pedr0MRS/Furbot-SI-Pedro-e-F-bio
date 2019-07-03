@@ -20,28 +20,30 @@ public class SpaceInvaders extends Furbot {
     int nVidasCriadas = 0;
     int nAliensCriados = 0;
     int qtdVidas = 3;
+    int infoVidas;
     int asteroidesMortos = 0;
-    int level = 0;
+    int level = 1;
     Vidas[] arrayVidas = new Vidas[qtdVidas];
+    Alien[] arrayAlien = new Alien[2];
     String nomeObj;
     String[] Id;
     //</editor-fold>
 
     public void QuantidadeVidas() {
         if (getObjeto(AQUIMESMO) != null) {
-            //nomeObj = getObjeto(AQUIMESMO).toString();
-            //Id = nomeObj.split("@");
-            //if ("ProjeteisAlien".equals(Id[0])) {
             removerObjetoDoMundo(arrayVidas[qtdVidas - 1]);
             qtdVidas--;
             vivo = false;
-            //}
         }
+    }
+    
+     public int RetornaLevel() {
+        return level;
     }
 
     public void ResetarVariaveis() {
         LoopDeFase = true;
-        pause = false;
+        pause = true;
         vivo = true;
         linhaAsteroide = 1;
         colunaAsteroide = 9;
@@ -51,17 +53,11 @@ public class SpaceInvaders extends Furbot {
         nVidasAdc = 0;
         nVidasCriadas = 0;
         nAliensCriados = 0;
-        qtdVidas = 3;
-        asteroidesMortos = 20;
-    }
-
-    public int RetornaLevel() {
-        return level;
-    }
-
-    public void RegistrarMorteAsteroide() {
-        asteroidesMortos--;
-    }
+        asteroidesMortos = 0;
+        ResetarMapa resetar = new ResetarMapa();
+        adicionarObjetoNoMundoXY(resetar,0,0);
+        Thread.sleep(2000);
+    
     
     private void loopPausa() {
         while (pause) {
@@ -75,12 +71,16 @@ public class SpaceInvaders extends Furbot {
     @Override
     public void inteligencia() throws Exception {
         limparConsole();
-
+        Numero Nivel = new Numero();
+        Nivel.setValor(level);
+        adicionarObjetoNoMundoXY(Nivel, 8, 9);
         while (LoopPrincipal) {
             while (LoopDeFase) {
                 vivo = true;
+                
                 //<editor-fold defaultstate="collapsed" desc="Criando Objetos">
                 Alien alien = new Alien();
+                arrayAlien[0] = alien;
                 Asteroides[] arrayAsteroides = new Asteroides[20];
 
                 while (nAsteroidesCriados < 20) {
@@ -148,20 +148,17 @@ public class SpaceInvaders extends Furbot {
                             break;
                     }
                     QuantidadeVidas();
+                    if (qtdVidas < infoVidas) {
+                        LoopDeFase = false;
+                    } 
                     if (qtdVidas == 0) {
-                    	//LoopDeFase = false;
+                    	LoopDeFase = false;
                     }
                 }
                 //</editor-fold>           
             }
             if (qtdVidas == 0) {
                 LoopPrincipal = false;
-            }
-            if (asteroidesMortos == 20) {
-                diga("Fase Completa");
-                level++;
-                LoopDeFase = true;
-                ResetarVariaveis();
             }
         }
         if (qtdVidas == 0) {
