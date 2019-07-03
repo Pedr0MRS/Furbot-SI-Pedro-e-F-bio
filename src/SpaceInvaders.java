@@ -1,6 +1,7 @@
 
 import br.furb.furbot.Furbot;
 import br.furb.furbot.MundoVisual;
+import br.furb.furbot.Numero;
 import br.furb.furbot.suporte.LoadImage;
 import javax.swing.ImageIcon;
 
@@ -41,7 +42,7 @@ public class SpaceInvaders extends Furbot {
         return level;
     }
 
-    public void ResetarVariaveis() {
+    public void ResetarVariaveis() throws InterruptedException {
         LoopDeFase = true;
         pause = true;
         vivo = true;
@@ -57,7 +58,7 @@ public class SpaceInvaders extends Furbot {
         ResetarMapa resetar = new ResetarMapa();
         adicionarObjetoNoMundoXY(resetar,0,0);
         Thread.sleep(2000);
-    
+    }
     
     private void loopPausa() {
         while (pause) {

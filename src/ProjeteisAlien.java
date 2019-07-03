@@ -35,7 +35,7 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
     public void executar() throws Exception {
         while (Y != 7) {
             if (SpaceInvaders.pause) {
-                pausarAsteroides();
+                pausarTiros();
             }
             Y = getY();
             andarAbaixo();
@@ -43,15 +43,15 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
         }
         if (Y == 7) {
             //inicio add
-            if ("SpaceInvaders".equals(Id[0])) {
-                break; //verificar para enviar diminuição de vida
-            }
+            //if ("SpaceInvaders".equals(Id[0])) {
+                //break; //verificar para enviar diminuicao de vida
+            //}
             //fim add
             removerMe();
         }
     }
     
-    private void pausarAsteroides() throws InterruptedException {
+    private void pausarTiros() throws InterruptedException {
     	while(SpaceInvaders.pause) {
     		Thread.sleep(2000);
     	}
