@@ -21,6 +21,9 @@ public class Asteroides extends ObjetoDoMundoAdapter {
             case 3:
                 velocidadeAsteroide = 400;
                 break;
+            case 255:
+                velocidadeAsteroide = 999;
+                break;
             default:
                 velocidadeAsteroide = 600;
                 break;

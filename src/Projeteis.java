@@ -7,6 +7,7 @@ public class Projeteis extends ObjetoDoMundoAdapter {
 
     Asteroides ObjAsteroide = new Asteroides();
     SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
+    int Morto = 0;
     String nomeObj;
     String[] Id;
 
@@ -18,8 +19,7 @@ public class Projeteis extends ObjetoDoMundoAdapter {
                 nomeObj = getObjeto(AQUIMESMO).toString();
                 Id = nomeObj.split("@");
                 if ("Asteroides".equals(Id[0])) {
-                    ObjSpaceInvaders.RegistrarMorteAsteroide();
-                    diga("Entrei Tiro Furbot");
+                    Morto++;
                 }
                 removerObjetoDoMundo(getObjeto(AQUIMESMO));
                 removerMe();
@@ -34,6 +34,8 @@ public class Projeteis extends ObjetoDoMundoAdapter {
     
      @Override
     public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("laser.png");
+        return LoadImage.getInstance().getIcon("laserFurbot.png");
     }
+    
+    
 }

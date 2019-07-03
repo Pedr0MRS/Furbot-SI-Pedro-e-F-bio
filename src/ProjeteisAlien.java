@@ -10,6 +10,7 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
     SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
     int level = ObjSpaceInvaders.RetornaLevel();
     int velocidadeProjetilAlien;
+    int Morto = 0;
     String nomeObj;
     String[] Id;
     int Y = 0;
@@ -43,16 +44,14 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
                 Id = nomeObj.split("@");
 
                 if ("Asteroides".equals(Id[0])) {
-                    ObjSpaceInvaders.RegistrarMorteAsteroide();
-                    diga("Entrei Tiro Alien");
+                    Morto++;
                 }
                 if ("SpaceInvaders".equals(Id[0])) {
                     break;
                 } else {
                     Thread.sleep(5);
-                    removerObjetoDoMundo(getObjeto(AQUIMESMO));
-                    removerMe();
-                    break;
+                    
+                    
                 }
             }
             Thread.sleep(VelocidadePorLvl());
@@ -64,6 +63,6 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 
     @Override
     public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("laser.png");
+        return LoadImage.getInstance().getIcon("laserAlien.png");
     }
 }
