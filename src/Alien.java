@@ -2,6 +2,11 @@
 import br.furb.furbot.Direcao;
 import br.furb.furbot.ObjetoDoMundoAdapter;
 import br.furb.furbot.suporte.LoadImage;
+
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 public class Alien extends ObjetoDoMundoAdapter {
@@ -40,9 +45,11 @@ public class Alien extends ObjetoDoMundoAdapter {
                 if (randomTime == 1) {
                     ProjeteisAlien projetil = new ProjeteisAlien();
                     adicionarObjetoNoMundoXY(projetil, getX(), getY());
+                    File tiro = new File("Tiro.wav");
+                    SomTiro(tiro);
                 }
                 if (SpaceInvaders.pause) {
-        			pausarAsteroides();
+                	pausarAlien();
         		}
                 andarEsquerda();
             }
@@ -52,16 +59,32 @@ public class Alien extends ObjetoDoMundoAdapter {
                 if (randomTime == 1) {
                     ProjeteisAlien projetil = new ProjeteisAlien();
                     adicionarObjetoNoMundoXY(projetil, getX(), getY());
+                    File tiro = new File("Tiro.wav");
+                    SomTiro(tiro);
                 }
                 if (SpaceInvaders.pause) {
-        			pausarAsteroides();
+        			pausarAlien();
         		}
                 andarDireita();
             }
         }
     }
 
-    private void pausarAsteroides() throws InterruptedException {
+    private static void SomTiro(File Sound)
+    {
+    	try 
+    	{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+			clip.start();
+		} 
+    	catch (Exception e) 
+    	{
+			
+		}
+    }
+    
+    private void pausarAlien() throws InterruptedException {
     	while(SpaceInvaders.pause) {
     		Thread.sleep(2000);
     	}

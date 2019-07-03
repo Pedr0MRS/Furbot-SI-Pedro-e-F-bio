@@ -1,3 +1,7 @@
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import br.furb.furbot.ObjetoDoMundoAdapter;
 import br.furb.furbot.suporte.LoadImage;
@@ -25,6 +29,8 @@ public class Projeteis extends ObjetoDoMundoAdapter {
 					Morto++; // codigo anterior : ObjSpaceInvaders.RegistrarMorteAsteroide();
 				}
 				removerObjetoDoMundo(getObjeto(AQUIMESMO));
+				File explosao = new File("Explosao.wav");
+                SomExplosao(explosao);
 				removerMe();
 				break;
 			}
@@ -33,6 +39,19 @@ public class Projeteis extends ObjetoDoMundoAdapter {
 		if (ehFim(ACIMA)) {
 			removerMe();
 		}
+	}
+
+	private void SomExplosao(File Sound) {
+		try 
+    	{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+			clip.start();
+		} 
+    	catch (Exception e) 
+    	{
+			
+		}	
 	}
 
 	private void pausarTiros() throws InterruptedException {

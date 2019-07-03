@@ -3,6 +3,11 @@ import br.furb.furbot.Furbot;
 import br.furb.furbot.MundoVisual;
 import br.furb.furbot.Numero;
 import br.furb.furbot.suporte.LoadImage;
+
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 public class SpaceInvaders extends Furbot {
@@ -146,6 +151,8 @@ public class SpaceInvaders extends Furbot {
                             int x = getX();
                             int y = getY();
                             adicionarObjetoNoMundoXY(laser, x, y - 1);
+                            File tiro = new File("Tiro.wav");
+                            SomTiro(tiro);
                             break;
                     }
                     QuantidadeVidas();
@@ -163,10 +170,38 @@ public class SpaceInvaders extends Furbot {
             }
         }
         if (qtdVidas == 0) {
+        	File fimJogo = new File("GameOver.wav");
+        	SomFimDeJogo(fimJogo);
             diga("GAMEOVER");
         }
-
     }
+    
+	private static void SomTiro(File Sound)
+    {
+    	try 
+    	{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+			clip.start();
+		} 
+    	catch (Exception e) 
+    	{
+			
+		}
+    }
+	
+	private void SomFimDeJogo(File Sound) {
+		try 
+		{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+			clip.start();
+		} 
+		catch (Exception e) 
+		{
+			
+		}
+	}
 
     public static void main(String[] args) {
         MundoVisual.iniciar("SpaceInvaders.xml");
