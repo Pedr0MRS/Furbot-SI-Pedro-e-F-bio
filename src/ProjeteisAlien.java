@@ -41,14 +41,10 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
             andarAbaixo();
             Thread.sleep(VelocidadePorLvl());
         }
-        if (Y == 7) {
-            //inicio add
-            //if ("SpaceInvaders".equals(Id[0])) {
-                //break; //verificar para enviar diminuicao de vida
-            //}
-            //fim add
-            removerMe();
+        if (getObjeto(AQUIMESMO) != null) {
+            SpaceInvaders.qtdVidas--;
         }
+        removerMe();
     }
     
     private void pausarTiros() throws InterruptedException {
