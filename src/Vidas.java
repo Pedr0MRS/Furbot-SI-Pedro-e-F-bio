@@ -12,7 +12,7 @@ public class Vidas extends ObjetoDoMundoAdapter {
 
     @Override
     public ImageIcon buildImage() {
-        return LoadImage.getInstance().getIcon("vida.png");
+        return LoadImage.getInstance().getIcon("vida3D.png");
     }
 
 }

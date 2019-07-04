@@ -1,4 +1,3 @@
-
 import javax.swing.ImageIcon;
 import br.furb.furbot.ObjetoDoMundoAdapter;
 import br.furb.furbot.suporte.LoadImage;
@@ -10,7 +9,6 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
     SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
     int level = ObjSpaceInvaders.RetornaLevel();
     int velocidadeProjetilAlien;
-    int Morto = 0;
     String nomeObj;
     String[] Id;
     int Y = 0;
@@ -36,28 +34,22 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
     @Override
     public void executar() throws Exception {
         while (Y != 7) {
+            if (SpaceInvaders.pause) {
+                pausarTiros();
+            }
             Y = getY();
             andarAbaixo();
-
-            if (getObjeto(AQUIMESMO) != null) {
-                nomeObj = getObjeto(AQUIMESMO).toString();
-                Id = nomeObj.split("@");
-
-                if ("Asteroides".equals(Id[0])) {
-                    Morto++;
-                }
-                if ("SpaceInvaders".equals(Id[0])) {
-                    break;
-                } else {
-                    Thread.sleep(5);
-                    
-                    
-                }
-            }
             Thread.sleep(VelocidadePorLvl());
         }
-        if (Y == 7) {
-            removerMe();
+        if (getObjeto(AQUIMESMO) != null) {
+            SpaceInvaders.qtdVidas--;
+        }
+        removerMe();
+    }
+
+    private void pausarTiros() throws InterruptedException {
+        while (SpaceInvaders.pause) {
+            Thread.sleep(2000);
         }
     }
 

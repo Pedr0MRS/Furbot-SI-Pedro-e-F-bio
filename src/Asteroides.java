@@ -21,9 +21,6 @@ public class Asteroides extends ObjetoDoMundoAdapter {
             case 3:
                 velocidadeAsteroide = 400;
                 break;
-            case 255:
-                velocidadeAsteroide = 999;
-                break;
             default:
                 velocidadeAsteroide = 600;
                 break;
@@ -36,20 +33,51 @@ public class Asteroides extends ObjetoDoMundoAdapter {
     public void executar() throws Exception {
         while (vivo) {
             for (int i = 0; i <= 4; i++) {
+                if (SpaceInvaders.pause) {
+                    pausarAsteroides();
+                }
                 Thread.sleep(VelocidadePorLvl());
                 andarEsquerda();
             }
-            for (int i = 0; i <= 4; i++) {
-                Thread.sleep(500);
-                andarDireita();
-            }
-            Thread.sleep(500);
+            Thread.sleep(VelocidadePorLvl());
             andarAbaixo();
-
+            if (getY() == 8) {
+                if (getObjeto(AQUIMESMO) != null) {
+                    SpaceInvaders.qtdVidas--;
+                }
+            }
             if (getY() == 9) {
                 removerMe();
                 break;
             }
+            for (int i = 0; i <= 4; i++) {
+                if (SpaceInvaders.pause) {
+                    pausarAsteroides();
+                }
+                Thread.sleep(VelocidadePorLvl());
+                andarDireita();
+            }
+            Thread.sleep(VelocidadePorLvl());
+            andarAbaixo();
+            if (SpaceInvaders.pause) {
+                pausarAsteroides();
+            }
+            if (getY() == 8) {
+                if (getObjeto(AQUIMESMO) != null) {
+                    SpaceInvaders.qtdVidas--;
+                }
+            }
+            if (getY() == 9) {
+                SpaceInvaders.asteroidesMortos++;
+                removerMe();
+                break;
+            }
+        }
+    }
+
+    private void pausarAsteroides() throws InterruptedException {
+        while (SpaceInvaders.pause) {
+            Thread.sleep(2000);
         }
     }
 

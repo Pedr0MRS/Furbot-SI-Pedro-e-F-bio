@@ -1,9 +1,8 @@
--Atirar (Espa�o)
--Pausa (P)
--Movimento (Setas) ---OK---
--Vida (3 vidas, ao ser atingido reinicia a fase)
--Asteroides (Movimento, levar tiro some, some ao atingir ultima linha)
-
--Fases (aumenta a velocidade dos aster�ides/naves aliens)
-
--Gr�ficos e soms
+-AtirarAlien (Fazer detecção de Coordenadav do furbot) 
+-Pausa (P) ---OK--- //PAUSAR TIRO
+-Asteroides (Movimento, levar tiro some, some ao atingir ultima linha) ---OK--- //VERIFICAR MOVIMENTOS ESTRANHOS Q SPAWNAM ASTEROIDES
+-Nova classe jogo  (Onde vai ser setado  Mortes, perca de vida, pontuação e fim de jogo)
+-Fases (aumenta a velocidade dos asteróides/naves aliens) ---OK VELOCIDADE, FALTA PASSAR FASE(VERIFICAR MORTE DOS CRACKUDOS)---
+-Gráficos ---OK--- // Novos icones de vida
+-
+-Soms

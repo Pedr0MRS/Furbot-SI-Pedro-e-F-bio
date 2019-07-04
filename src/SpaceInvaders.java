@@ -7,10 +7,12 @@ import javax.swing.ImageIcon;
 
 public class SpaceInvaders extends Furbot {
 
-    //<editor-fold defaultstate="collapsed" desc="Declarando Variáveis">
+    //<editor-fold defaultstate="collapsed" desc="Declarando Variaveis">
     boolean LoopDeFase = true;
     boolean LoopPrincipal = true;
-    boolean pause = true;
+    public static boolean pause = false;
+    public static int qtdVidas = 3;
+    public static int asteroidesMortos = 0;
     boolean vivo = true;
     int linhaAsteroide = 1;
     int colunaAsteroide = 9;
@@ -20,9 +22,7 @@ public class SpaceInvaders extends Furbot {
     int nVidasAdc = 0;
     int nVidasCriadas = 0;
     int nAliensCriados = 0;
-    int qtdVidas = 3;
     int infoVidas;
-    int asteroidesMortos = 0;
     int level = 1;
     Vidas[] arrayVidas = new Vidas[qtdVidas];
     Alien[] arrayAlien = new Alien[2];
@@ -30,11 +30,13 @@ public class SpaceInvaders extends Furbot {
     String[] Id;
     //</editor-fold>
 
-    public void QuantidadeVidas() {
-        if (getObjeto(AQUIMESMO) != null) {
-            removerObjetoDoMundo(arrayVidas[qtdVidas - 1]);
-            qtdVidas--;
-            vivo = false;
+    public void QuantidadeVidasHUD() {
+        if (getObjetoXY(3, 9) != null) {
+            removerObjetoDoMundo(getObjetoXY(3, 9));
+        } else if (getObjetoXY(2, 9) != null) {
+            removerObjetoDoMundo(getObjetoXY(2, 9));
+        } else {
+            removerObjetoDoMundo(getObjetoXY(1, 9));
         }
     }
 
@@ -43,8 +45,9 @@ public class SpaceInvaders extends Furbot {
     }
 
     public void ResetarVariaveis() throws InterruptedException {
+
         LoopDeFase = true;
-        pause = true;
+        pause = false;
         vivo = true;
         linhaAsteroide = 1;
         colunaAsteroide = 9;
@@ -54,9 +57,9 @@ public class SpaceInvaders extends Furbot {
         nVidasAdc = 0;
         nVidasCriadas = 0;
         nAliensCriados = 0;
+        qtdVidas = 3;
+        infoVidas = 0;
         asteroidesMortos = 0;
-        ResetarMapa resetar = new ResetarMapa();
-        adicionarObjetoNoMundoXY(resetar,0,0);
         Thread.sleep(2000);
     }
 
@@ -72,17 +75,19 @@ public class SpaceInvaders extends Furbot {
     @Override
     public void inteligencia() throws Exception {
         limparConsole();
+        qtdVidas = 3;
+        asteroidesMortos = 0;
         Numero Nivel = new Numero();
         Nivel.setValor(level);
         adicionarObjetoNoMundoXY(Nivel, 8, 9);
         while (LoopPrincipal) {
             while (LoopDeFase) {
-                vivo = true;
 
                 //<editor-fold defaultstate="collapsed" desc="Criando Objetos">
                 Alien alien = new Alien();
                 arrayAlien[0] = alien;
                 Asteroides[] arrayAsteroides = new Asteroides[20];
+
                 while (nAsteroidesCriados < 20) {
                     Asteroides fabricaAsteroide = new Asteroides();
                     arrayAsteroides[nAsteroidesCriados] = fabricaAsteroide;
@@ -106,7 +111,7 @@ public class SpaceInvaders extends Furbot {
                     linhaAsteroide = 1;
                 }
 
-                for (int i = 1; nVidasAdc < qtdVidas; i++) {
+                for (int i = 1; nVidasAdc < 3; i++) {
                     if (!(colunaVida < 0)) {
                         adicionarObjetoNoMundoXY(arrayVidas[nVidasAdc], (i), 9);
                         nVidasAdc++;
@@ -115,21 +120,13 @@ public class SpaceInvaders extends Furbot {
                 }
 
                 if (nAliensCriados == 0) {
-                    adicionarObjetoNoMundoXY(arrayAlien[0], 9, 0);
+                    adicionarObjetoNoMundoXY(alien, 9, 0);
                     nAliensCriados++;
                 }
                 //</editor-fold>
 
-                //<editor-fold defaultstate="collapsed" desc="Loop de Vida do Furbot">
-                Projeteis ContagemMorteP = new Projeteis();
-                ProjeteisAlien ContagemMortePA = new ProjeteisAlien();
-
+                //<editor-fold defaultstate="collapsed" desc="Loop de Vida do Furbot">              
                 while (vivo) {
-                    asteroidesMortos = ContagemMortePA.Morto + ContagemMorteP.Morto;
-
-                    if (asteroidesMortos == 20) {
-                        LoopDeFase = false;
-                    }
                     int tecla = getUltimaTeclaPress();
                     switch (tecla) {
                         case TECLADIREITA:
@@ -146,36 +143,43 @@ public class SpaceInvaders extends Furbot {
                             pause = true;
                             diga("Jogo pausado");
                             loopPausa();
+                            limparConsole();
                             break;
                         case 32:
+                            limparConsole();
                             Projeteis laser = new Projeteis();
                             int x = getX();
                             int y = getY();
                             adicionarObjetoNoMundoXY(laser, x, y - 1);
                             break;
                     }
-                    QuantidadeVidas();
-                    if (qtdVidas < infoVidas) {
-                        LoopDeFase = false;
+                    if (infoVidas > qtdVidas) {
+                        QuantidadeVidasHUD();
                     }
+                    if (asteroidesMortos == 20) {
+                        diga("FASE COMPLETA");
+                        vivo = false;
+                    }
+                    infoVidas = qtdVidas;
                     if (qtdVidas == 0) {
-                        LoopDeFase = false;
-                    }
+                        vivo = false;
+                    }                   
                 }
-                //</editor-fold>           
+                //</editor-fold>
+
+                if (qtdVidas == 0) {
+                    LoopDeFase = false;
+                }
+                if (asteroidesMortos == 20) {
+                    ResetarVariaveis();
+                    level++;
+                }
             }
             if (qtdVidas == 0) {
+                diga("GAMEOVER");
                 LoopPrincipal = false;
             }
-            if (asteroidesMortos == 20) {
-                diga("Fase Completa");
-                level++;
-            }           
         }
-        if (qtdVidas == 0) {
-            diga("GAMEOVER");
-        }
-
     }
 
     public static void main(String[] args) {

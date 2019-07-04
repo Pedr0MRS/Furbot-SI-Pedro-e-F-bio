@@ -41,6 +41,9 @@ public class Alien extends ObjetoDoMundoAdapter {
                     ProjeteisAlien projetil = new ProjeteisAlien();
                     adicionarObjetoNoMundoXY(projetil, getX(), getY());
                 }
+                if (SpaceInvaders.pause) {
+        			pausarAsteroides();
+        		}
                 andarEsquerda();
             }
             while (!ehFim(DIREITA)) {
@@ -50,12 +53,21 @@ public class Alien extends ObjetoDoMundoAdapter {
                     ProjeteisAlien projetil = new ProjeteisAlien();
                     adicionarObjetoNoMundoXY(projetil, getX(), getY());
                 }
+                if (SpaceInvaders.pause) {
+        			pausarAsteroides();
+        		}
                 andarDireita();
             }
         }
     }
 
-    @Override
+    private void pausarAsteroides() throws InterruptedException {
+    	while(SpaceInvaders.pause) {
+    		Thread.sleep(2000);
+    	}
+	}
+
+	@Override
     public ImageIcon buildImage() {
         return LoadImage.getInstance().getIcon("alien.png");
     }
