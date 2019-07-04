@@ -1,4 +1,3 @@
-
 import br.furb.furbot.Furbot;
 import br.furb.furbot.MundoVisual;
 import br.furb.furbot.Numero;
@@ -16,6 +15,8 @@ public class SpaceInvaders extends Furbot {
     boolean LoopDeFase = true;
     boolean LoopPrincipal = true;
     public static boolean pause = false;
+    public static int qtdVidas = 3;
+    public static int asteroidesMortos = 0;
     boolean vivo = true;
     int linhaAsteroide = 1;
     int colunaAsteroide = 9;
@@ -25,9 +26,7 @@ public class SpaceInvaders extends Furbot {
     int nVidasAdc = 0;
     int nVidasCriadas = 0;
     int nAliensCriados = 0;
-    int qtdVidas = 3;
     int infoVidas;
-    int asteroidesMortos = 0;
     int level = 1;
     Vidas[] arrayVidas = new Vidas[qtdVidas];
     Alien[] arrayAlien = new Alien[2];
@@ -35,11 +34,13 @@ public class SpaceInvaders extends Furbot {
     String[] Id;
     //</editor-fold>
 
-    public void QuantidadeVidas() {
-        if (getObjeto(AQUIMESMO) != null) {
-            removerObjetoDoMundo(arrayVidas[qtdVidas - 1]);
-            qtdVidas--;
-            vivo = false;
+    public void QuantidadeVidasHUD() {
+    	if (getObjetoXY(3, 9) != null) {
+            removerObjetoDoMundo(getObjetoXY(3, 9));
+        } else if (getObjetoXY(2, 9) != null) {
+            removerObjetoDoMundo(getObjetoXY(2, 9));
+        } else {
+            removerObjetoDoMundo(getObjetoXY(1, 9));
         }
     }
     
@@ -49,7 +50,7 @@ public class SpaceInvaders extends Furbot {
 
     public void ResetarVariaveis() throws InterruptedException {
         LoopDeFase = true;
-        pause = true;
+        pause = false;
         vivo = true;
         linhaAsteroide = 1;
         colunaAsteroide = 9;
@@ -60,8 +61,6 @@ public class SpaceInvaders extends Furbot {
         nVidasCriadas = 0;
         nAliensCriados = 0;
         asteroidesMortos = 0;
-        ResetarMapa resetar = new ResetarMapa();
-        adicionarObjetoNoMundoXY(resetar,0,0);
         Thread.sleep(2000);
     }
     
@@ -77,13 +76,13 @@ public class SpaceInvaders extends Furbot {
     @Override
     public void inteligencia() throws Exception {
         limparConsole();
+        qtdVidas = 3;
+        asteroidesMortos = 0;
         Numero Nivel = new Numero();
         Nivel.setValor(level);
         adicionarObjetoNoMundoXY(Nivel, 8, 9);
         while (LoopPrincipal) {
-            while (LoopDeFase) {
-                vivo = true;
-                
+            while (LoopDeFase) {                
                 //<editor-fold defaultstate="collapsed" desc="Criando Objetos">
                 Alien alien = new Alien();
                 arrayAlien[0] = alien;
@@ -155,12 +154,16 @@ public class SpaceInvaders extends Furbot {
                             SomTiro(tiro);
                             break;
                     }
-                    QuantidadeVidas();
-                    if (qtdVidas < infoVidas) {
-                        LoopDeFase = false;
-                    } 
+                    if (infoVidas > qtdVidas) {
+                        QuantidadeVidasHUD();
+                    }
+                    if (asteroidesMortos == 20) {
+                        diga("FASE COMPLETA");
+                        vivo = false;
+                    }
+                    infoVidas = qtdVidas;
                     if (qtdVidas == 0) {
-                    	LoopDeFase = false;
+                        vivo = false;
                     }
                 }
                 //</editor-fold>           
@@ -168,11 +171,16 @@ public class SpaceInvaders extends Furbot {
             if (qtdVidas == 0) {
                 LoopPrincipal = false;
             }
+            if (asteroidesMortos == 20) {
+                ResetarVariaveis();
+                level++;
+            }
         }
         if (qtdVidas == 0) {
         	File fimJogo = new File("GameOver.wav");
         	SomFimDeJogo(fimJogo);
             diga("GAMEOVER");
+            LoopPrincipal = false;
         }
     }
     
