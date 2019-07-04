@@ -25,12 +25,18 @@ public class Projeteis extends ObjetoDoMundoAdapter {
 			if (getObjeto(AQUIMESMO) != null) {
 				nomeObj = getObjeto(AQUIMESMO).toString();
 				Id = nomeObj.split("@");
-				if ("Asteroides".equals(Id[0])) {
-					Morto++; // codigo anterior : ObjSpaceInvaders.RegistrarMorteAsteroide();
+				if ("Asteroides".equals(Id[0]) || "ProjeteisAlien".equals(Id[0])) {
+					removerObjetoDoMundo(getObjeto(AQUIMESMO));
+					File explosao = new File("Explosao.wav");
+					SomExplosao(explosao);
+					removerMe();
+					break;
 				}
+				SpaceInvaders.asteroidesMortos++;
+				diga("" + SpaceInvaders.asteroidesMortos);
 				removerObjetoDoMundo(getObjeto(AQUIMESMO));
 				File explosao = new File("Explosao.wav");
-                SomExplosao(explosao);
+				SomExplosao(explosao);
 				removerMe();
 				break;
 			}
@@ -42,16 +48,13 @@ public class Projeteis extends ObjetoDoMundoAdapter {
 	}
 
 	private void SomExplosao(File Sound) {
-		try 
-    	{
+		try {
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Sound));
 			clip.start();
-		} 
-    	catch (Exception e) 
-    	{
-			
-		}	
+		} catch (Exception e) {
+
+		}
 	}
 
 	private void pausarTiros() throws InterruptedException {
