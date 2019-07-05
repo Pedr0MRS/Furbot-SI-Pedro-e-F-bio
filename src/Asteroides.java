@@ -8,7 +8,26 @@ public class Asteroides extends ObjetoDoMundoAdapter {
 	boolean vivo = true;
 	SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
 	int velocidadeAsteroide;
+	int level = ObjSpaceInvaders.RetornarLevel();
 
+	public int VelocidadePorLvl() {
+		switch (level) {
+		    case 1:
+			velocidadeProjetilAlien = 600;
+			break;
+		    case 2:
+			velocidadeProjetilAlien = 500;
+			break;
+		    case 3:
+			velocidadeProjetilAlien = 400;
+			break;
+		    default:
+			velocidadeProjetilAlien = 600;
+			break;
+		}
+        return velocidadeProjetilAlien;
+    	}
+	
 	@Override
 	public void executar() throws Exception {
 		while (vivo) {
@@ -16,7 +35,7 @@ public class Asteroides extends ObjetoDoMundoAdapter {
 				if (SpaceInvaders.pause) {
 					pausarAsteroides();
 				}
-				Thread.sleep(600);
+				Thread.sleep(VelocidadePorLvl());
 				if (vivo) {
 					andarEsquerda();
 				}
@@ -25,7 +44,7 @@ public class Asteroides extends ObjetoDoMundoAdapter {
 				if (SpaceInvaders.pause) {
 					pausarAsteroides();
 				}
-				Thread.sleep(600);
+				Thread.sleep(VelocidadePorLvl());
 				if (vivo) {
 					andarDireita();
 				}
@@ -33,7 +52,7 @@ public class Asteroides extends ObjetoDoMundoAdapter {
 			if (SpaceInvaders.pause) {
 				pausarAsteroides();
 			}
-			Thread.sleep(600);
+			Thread.sleep(VelocidadePorLvl());
 			if (vivo) {
 				andarAbaixo();
 			}
