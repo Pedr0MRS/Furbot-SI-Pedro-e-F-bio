@@ -99,4 +99,5 @@ public class Alien extends ObjetoDoMundoAdapter {
 	public ImageIcon buildImage() {
 		return LoadImage.getInstance().getIcon("alien.png");
 	}
+	//a
 }
