@@ -29,6 +29,7 @@ public class SpaceInvaders extends Furbot {
     int level = 1;
     Vidas[] arrayVidas = new Vidas[10];
     Alien[] arrayAlien = new Alien[3];
+    Alien alien;
     String nomeObj;
     String[] Id;
 
@@ -124,17 +125,18 @@ public class SpaceInvaders extends Furbot {
                     linhaAsteroide = 1;
                 }
 
-//                for (int i = 0; nAliensAdc <= 1; i++) {
-//                    Alien alien = new Alien();
-//                    arrayAlien[nAliensAdc] = alien;
-//                    nAliensAdc++;
-//                }
-//                for (int i = 0; nAliensCriados <= 1; i++) {
-//                    adicionarObjetoNoMundoXY(arrayAlien[nAliensCriados], 9, 0);
-//                    nAliensCriados++;
-//                }
-
                 CriarFase = false;
+                
+                if(!alien.vivo){
+                    Alien alien = new Alien();
+                    arrayAlien[nAliensCriados] = alien;
+                    nAliensCriados++;
+                    int randomColuna = (int) (Math.random() * 8 + 2);
+                    adicionarObjetoNoMundoXY(arrayAlien[nAliensAdc], randomColuna, 0);
+                    nAliensAdc++;
+                }
+
+                
             }
 
             while (LoopDeVida) {
