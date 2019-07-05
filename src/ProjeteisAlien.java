@@ -6,12 +6,32 @@ import br.furb.furbot.*;
 public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 
 	Asteroides ObjAsteroides = new Asteroides();
+	SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
+	int level = ObjSpaceInvaders.RetornarLevel();
 	int velocidadeProjetilAlien;
 	String nomeObj;
 	String[] Id;
 	int Y = 0;
 	boolean vivo = true;
-	SpaceInvaders acerto;
+	SpaceInvaders acerto;	
+
+	public int VelocidadePorLvl() {
+		switch (level) {
+		    case 1:
+			velocidadeProjetilAlien = 65;
+			break;
+		    case 2:
+			velocidadeProjetilAlien = 55;
+			break;
+		    case 3:
+			velocidadeProjetilAlien = 45;
+			break;
+		    default:
+			velocidadeProjetilAlien = 65;
+			break;
+		}
+        return velocidadeAsteroide;
+    	}
 	
 	private void pausarTiros() throws InterruptedException {
 		while (SpaceInvaders.pause) {
@@ -28,7 +48,7 @@ public class ProjeteisAlien extends ObjetoDoMundoAdapter {
 			Y = getY();
 			if (vivo){
 				andarAbaixo();
-				Thread.sleep(65);
+				Thread.sleep(VelocidadePorLvl());
 			}
 		}
 		if (getObjeto(AQUIMESMO) != null) {
