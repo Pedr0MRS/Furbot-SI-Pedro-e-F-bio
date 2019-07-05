@@ -11,10 +11,10 @@ import javax.swing.ImageIcon;
 
 public class Alien extends ObjetoDoMundoAdapter {
 
+	SpaceInvaders ObjSpaceInvaders = new SpaceInvaders();
 	ProjeteisAlien projetil = new ProjeteisAlien();
 	boolean vivo = true;
-	int random;
-	
+	int random;	
 	int velocidadeAlien;
 	int level = ObjSpaceInvaders.RetornarLevel();
 
