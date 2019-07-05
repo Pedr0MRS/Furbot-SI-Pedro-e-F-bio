@@ -13,6 +13,7 @@ public class SpaceInvaders extends Furbot {
     boolean LoopDeVida = true;
     boolean CriarFase = true;
     boolean LoopPrincipal = true;
+    boolean alienVivo = true;
     public static boolean pause = false;
     static int asteroidesMortos = 0;
     int qtdVidas = 3;
@@ -30,6 +31,7 @@ public class SpaceInvaders extends Furbot {
     Vidas[] arrayVidas = new Vidas[10];
     Alien[] arrayAlien = new Alien[3];
     Alien alien;
+    
     String nomeObj;
     String[] Id;
 
@@ -55,7 +57,8 @@ public class SpaceInvaders extends Furbot {
             }
         }
     }
-
+    
+    //Métodos de Som
     private static void SomTiro(File Sound) {
         try {
             Clip clip = AudioSystem.getClip();
@@ -75,6 +78,7 @@ public class SpaceInvaders extends Furbot {
 
         }
     }
+    //Fim Métodos de Som
 
     @Override
     public void inteligencia() throws Exception {
@@ -127,7 +131,10 @@ public class SpaceInvaders extends Furbot {
 
                 CriarFase = false;
                 
-                if(!alien.vivo){
+                
+                //Verifica se o ali
+                
+                if(!alienVivo){
                     Alien alien = new Alien();
                     arrayAlien[nAliensCriados] = alien;
                     nAliensCriados++;
@@ -167,13 +174,15 @@ public class SpaceInvaders extends Furbot {
                         SomTiro(tiro);
                         break;
                 }
-
+                
+                //Verifica se o furbot perdeu vida
                 if (infoVidas > qtdVidas) {
                     QuantidadeVidasHUD();
                 }
 
                 infoVidas = qtdVidas;
 
+                //Verifica se todos os asteroides foram destruidos
                 if (asteroidesMortos == 20) {
                     diga("Fase "+ level +" Completa");
                     asteroidesMortos = 0;
@@ -184,8 +193,10 @@ public class SpaceInvaders extends Furbot {
                     LoopDeVida = false;
                     level++;
                     Thread.sleep(2000);
+                    alienVivo = alien.vivo;
 
                 }
+                //Verifica se o furbot perdeu todas as vidas
                 if (qtdVidas == 0) {
                     File fimJogo = new File("GameOver.wav");
                     SomFimDeJogo(fimJogo);
@@ -194,10 +205,18 @@ public class SpaceInvaders extends Furbot {
                     LoopDeVida = false;
                 }
             }
+            //Para o loop principal ao perder todas as vidas
             if (qtdVidas == 0) {
                 break;
             }
-        }
+            //Para o loop principal ao zerar as 3 fases
+            if(level > 3){
+                Thread.sleep(2000);
+                limparConsole();
+                diga("Parabéns você venceu!!!!!!");
+                break;
+            }
+        }      
     }
 
     public static void main(String[] args) {
