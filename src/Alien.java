@@ -14,12 +14,33 @@ public class Alien extends ObjetoDoMundoAdapter {
 	ProjeteisAlien projetil = new ProjeteisAlien();
 	boolean vivo = true;
 	int random;
+	
+	int velocidadeAlien;
+	int level = ObjSpaceInvaders.RetornarLevel();
+
+	public int VelocidadePorLvl() {
+		switch (level) {
+		    case 1:
+			velocidadeProjetilAlien = 550;
+			break;
+		    case 2:
+			velocidadeProjetilAlien = 450;
+			break;
+		    case 3:
+			velocidadeProjetilAlien = 400;
+			break;
+		    default:
+			velocidadeProjetilAlien = 550;
+			break;
+		}
+        return velocidadeAlien;
+    	}
 
 	@Override
 	public void executar() throws Exception {
 		while (vivo) {
 			while (!ehFim(ESQUERDA) && vivo) {
-				Thread.sleep(550);
+				Thread.sleep(VelocidadePorLvl());
 				if (vivo) {
 					int randomTime = (int) (Math.random() * 2 + 1);
 					if (randomTime == 1) {
@@ -38,7 +59,7 @@ public class Alien extends ObjetoDoMundoAdapter {
 			}
 
 			while (!ehFim(DIREITA) && vivo) {
-				Thread.sleep(550);
+				Thread.sleep(VelocidadePorLvl());
 				if (vivo) {
 					int randomTime = (int) (Math.random() * 2 + 1);
 					if (randomTime == 1) {
