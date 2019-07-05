@@ -41,6 +41,10 @@ public class SpaceInvaders extends Furbot {
             removerObjetoDoMundo(getObjetoXY(1, 9));
         }
     }
+    
+    public int RetornarLevel(){
+        return level;   
+    }
 
     private void loopPausa() {
         while (pause) {
