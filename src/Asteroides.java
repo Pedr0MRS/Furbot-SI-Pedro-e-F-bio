@@ -25,7 +25,7 @@ public class Asteroides extends ObjetoDoMundoAdapter {
 			velocidadeProjetilAlien = 600;
 			break;
 		}
-        return velocidadeProjetilAlien;
+        return velocidadeAsteroide;
     	}
 	
 	@Override
